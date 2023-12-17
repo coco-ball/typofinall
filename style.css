@@ -1,0 +1,151 @@
+:root {
+  --red: #75000c;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--red);
+}
+
+canvas {
+  display: block;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  min-width: 1200px;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  width: fit-content;
+  margin: 0;
+  padding: 0 20px 20px 20px;
+  /* font-family: "hahmlet", sans-serif;
+  font-weight: 700;
+  font-style: normal; */
+}
+
+.grid {
+  width: 90vw;
+  max-width: 100%;
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-rows: 1fr;
+  grid-auto-flow: row dense;
+  /* grid-gap: 10px; */
+  counter-reset: boxes;
+}
+
+.box {
+  position: relative;
+  color: rgba(94, 94, 94, 0.7);
+  font-size: 2rem;
+  font-family: sans-serif;
+  counter-increment: boxes;
+
+  &::before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: 50%;
+  }
+
+  &::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: counter(boxes);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+  }
+}
+
+.red {
+  background: var(--red);
+  /* border: 5px solid rgba(0, 0, 0, 0.5); */
+}
+
+.white {
+  background: white;
+  border: 5px solid var(--red);
+}
+
+.tall {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.wide {
+  grid-row: span 1;
+  grid-column: span 2;
+}
+
+.square {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.shuffleWrap {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .wide {
+    grid-column: span 1;
+  }
+}
+
+.name-tag {
+  /* background-color: white; */
+  /* position: absolute; */
+  position: fixed;
+  left: 50%;
+  top: -80px;
+  padding: 10px;
+  /* width: 165px; */
+  display: flex;
+  gap: 4px;
+  /* justify-content: center;
+  align-items: center; */
+  /* flex-direction: column;
+  align-items: center; */
+  /* mix-blend-mode: difference; */
+}
+
+.name {
+  color: rgb(200, 0, 0);
+  /* line-height: 90%; */
+  width: 20px;
+  height: auto;
+  font-size: 0.75rem;
+  font-weight: bold;
+  font-style: normal;
+  filter: blur(3px);
+  animation: blur 3s linear infinite alternate;
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(2px);
+  }
+  50% {
+    filter: blur(5px);
+  }
+  100% {
+    filter: blur(2px);
+  }
+}
